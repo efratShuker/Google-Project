@@ -1,0 +1,59 @@
+This google project is auto complete data
+
+when user enter to find in chrome he get list of sentences that maybe he want to enter sentence from the list.
+this project imagine it.
+
+first I had large amount of data. data is files that each file contain many sentences for complete to user.
+I read all the data from files and save it in dictionary such that keys are words in sentences and values are
+array that contain all sentences that this word (word in this key) exist in the sentences.
+
+insert all data to dictionary it mean that read all sentences and for each sentence over on all words it take
+large amount of time! but it not disturb because it be done in offline not when user enter and wait to the sentences.
+
+and in online when user enter his sentence I get from database all sentences that contain the first word that user enter
+and I check that these sentences contain the all other words that user enter. in addition I check that the words in
+the sentences come out in same order that user enter and check that there is no another word between the words that user enter
+
+in addition to improve the auto complete data I try to fix the words that user enter but only one fix in each time.
+the fix refer to 3 fixes:
+1.  add to word that user enter a char, the location of the char can be in each location in word and char can be between a-z
+    so I add in each location in word all chars between a-z. and I check sentences that contain the fix word and other
+    words that user enter in addition I check that the words in the sentences come out in same order that user enter
+    and check that there is no another word between the words that user enter.
+2.  delete char from word that user enter, the char can be all chars in word
+    so I delete in each time different char from word and I check sentences that contain the fix word and other
+    words that user enter in addition I check that the words in the sentences come out in same order that user enter
+    and check that there is no another word between the words that user enter.
+3.  change char in word that user enter, the char that change can be in each chars in word and char that come instead
+    can be between a-z, so I change each char in word in all chars between a-z. and I check sentences that contain
+    the fix word and other words that user enter in addition I check that the words in the sentences come out in same
+    order that user enter and check that there is no another word between the words that user enter.
+
+in addition, I return to user only 5 sentences so for each sentence has a score the score is according it:
+if add char to word:
+    if location of add char in first of word, the score is 10
+    if location of add char in second location of word, the score is 8
+    if location of add char in third location of word, the score is 6
+    if location of add char in fourth location of word, the score is 4
+    if location of add char in fifth and away location of word, the score is 1
+
+if delete char from word:
+    if location of delete char in first of word, the score is 10
+    if location of delete char in second location of word, the score is 8
+    if location of delete char in third location of word, the score is 6
+    if location of delete char in fourth location of word, the score is 4
+    if location of delete char in fifth and away location of word, the score is 1
+
+if change char in word:
+    if location of change char in first of word, the score is 5
+    if location of change char in second location of word, the score is 4
+    if location of change char in third location of word, the score is 3
+    if location of change char in fourth location of word, the score is 2
+    if location of change char in fifth and away location of word, the score is 1
+
+each sentence save in array of tuples that tuples[0] is sentence and tuple[1] is score for this sentence
+I sort the sentences according the score from low to high and return the 5 first sentences from array
+and thus I return to user the 5 sentences with low score
+
+after user get the completed sentences, print to user the basic words that he enter and he can to continue the sentence
+and if user enter '#' the system begin to start and wait to a new input.
